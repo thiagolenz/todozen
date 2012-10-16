@@ -1,0 +1,10 @@
+<ul class="tags">
+	<li>
+		<a href="/todos/"><span class="label label-info">All (<%= Todo.undone_tasks.count %>)</span></a>
+	</li>
+	<%= @tags[0].each do |t| %>
+	<li>
+		<a href="/todos/<%= t %>"><span class="label label-info"><%= t %> (<%= Todo.undone_tagged_with(t).count %>)</span></a>
+	</li>
+	<% end %>
+</ul>
