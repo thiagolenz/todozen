@@ -42,6 +42,6 @@ class TodosController < ApplicationController
         @tags << tag
       end
     end
-    @tags = @tags.transpose.uniq
+    @tags = @tags.flatten.uniq
   end
 end
