@@ -1,28 +1,25 @@
 <%= render 'form' %>
-
-<div class="row-fluid">
-	<div class="span10">
-		<ul class="unstyled form-inline todos">
-			<% @todos.each do |t| %>
-			<li>
-				<input type='checkbox' id='<%= t.id %>'/>
-				<label for='<%= t.id %>'><%= todo_desc(t.desc).html_safe unless t.desc.nil? %></label>
-			</li>
-			<% end %>
-		</ul>
-	</div>
-	<div class="span2 side">
-		<legend><h4>Tags</h4></legend>
-		<ul class="unstyled">
-			<li>
-				<a href="/todos/"><span class="label label-info">All (<%= Todo.undone_tasks.count %>)</span></a>
-			</li>
-			<li>
-				<a href="/todos/work"><span class="label label-info">work (<%= Todo.undone_tagged_with('work').count %>)</span></a>
-			</li>
-			<li>
-				<a href="/todos/maoe"><span class="label label-info">maoe (<%= Todo.undone_tagged_with('maoe').count %>)</span></a>
-			</li>
-		</ul>
-	</div>
+<legend>
+	<h4>
+		#
+		<% if @tag.nil? %>
+		All
+		<% else %>
+		<%= @tag %>
+		<% end %>
+		<%= render 'tags' %>
+	</h4>
+</legend>
+<ul class="unstyled form-inline todos">
+	<% @todos.each do |t| %>
+	<% unless t.desc.nil? %>
+	<li>
+		<input type='checkbox' id='<%= t.id %>'/>
+		<label for='<%= t.id %>'>
+			<%= todo_desc(t.desc).html_safe %>
+		</label>
+	</li>
+	<% end %>
+	<% end %>
+</ul>
 </div>

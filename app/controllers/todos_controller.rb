@@ -1,7 +1,7 @@
 class TodosController < ApplicationController
   respond_to :html, :json
-  before_filter :new_todo, :except => [:create]
-  after_filter :new_todo, :only => [:done]
+  before_filter :prepare_todo, :except => [:create]
+  after_filter :prepare_todo, :only => [:done]
 
   def index
     @todos = Todo.undone_tasks
@@ -18,12 +18,12 @@ class TodosController < ApplicationController
   end
 
   def tag
-    @todos = Todo.undone_tagged_with(params[:tag])
+    @tag = params[:tag]
+    @todos = Todo.undone_tagged_with @tag
     render :action => 'index'
   end
 
   def done
-    puts "SADSADAAS" + request.referer
     @todo = Todo.undone_tasks.find(params[:id])
     if not @todo.nil?
       @todo.done = true
@@ -34,7 +34,14 @@ class TodosController < ApplicationController
   end
 
   private
-  def new_todo
+  def prepare_todo
     @todo = Todo.new(done: false)
+    @tags = []
+    Todo.undone_tasks.each do |t|
+      t.desc.scan(/(?:^|\s)#(\w+)/i).transpose.each do |tag|
+        @tags << tag
+      end
+    end
+    @tags = @tags.transpose.uniq
   end
 end
