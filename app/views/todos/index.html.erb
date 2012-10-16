@@ -1,0 +1,7 @@
+<%= render 'form' %>
+
+<% @todos.each do |t| %>
+	<ul class="unstyled">
+		<li><input type='checkbox' /><%= t.desc %></li>
+	</ul>
+<% end %>

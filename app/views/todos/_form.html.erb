@@ -1,0 +1,8 @@
+<div class="input-append">
+	<%= form_for @todo, :remote => true do |f| %>
+		<%= f.text_field :desc, :autofocus => true, :class => :span8 %>
+		<button type="submit" class="btn">
+		  <i class="icon-plus"></i>
+		</button>
+	<% end %>
+</div>
