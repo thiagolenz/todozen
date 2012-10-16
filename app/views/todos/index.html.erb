@@ -1,15 +1,5 @@
-<%= render 'form' %>
-<legend>
-	<h4>
-		#
-		<% if @tag.nil? %>
-		All
-		<% else %>
-		<%= @tag %>
-		<% end %>
-		<%= render 'tags' %>
-	</h4>
-</legend>
+<%= render 'tags' %>
+<hr class='soften' />
 <ul class="unstyled form-inline todos">
 	<% @todos.each do |t| %>
 	<% unless t.desc.nil? %>

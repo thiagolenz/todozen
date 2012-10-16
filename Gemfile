@@ -9,6 +9,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'turbolinks', :git => 'git://github.com/rails/turbolinks.git'
   gem 'twitter-bootstrap-turbo', :git => 'git://github.com/davydotcom/twitter-bootstrap-rails.git'
+  gem 'css3-microsoft-metro-buttons-rails'
 end
 
 gem 'quiet_assets'

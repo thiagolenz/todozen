@@ -1,10 +1,21 @@
+<legend>
+	<h3>
+		<i class='m-icon-big-swapright'></i>
+		<% if @tag.nil? %>
+		All my todos
+		<% else %>
+		<%= "Todos tagged with ##{@tag}" %>
+		<% end %>
+	</h3>
+</legend>
+<%= render 'form' %>
 <ul class="tags">
 	<li>
-		<a href="/todos/"><span class="label label-info">All (<%= Todo.undone_tasks.count %>)</span></a>
+		<a class="m-btn mini <%= class_for_tag @tag, nil %>" href="/todos/">All (<%= Todo.undone_tasks.count %>)</a>
 	</li>
-	<%= @tags[0].each do |t| %>
+	<% @tags.each do |t| %>
 	<li>
-		<a href="/todos/<%= t %>"><span class="label label-info"><%= t %> (<%= Todo.undone_tagged_with(t).count %>)</span></a>
+		<a class="m-btn mini <%= class_for_tag @tag, t %>" href="/todos/<%= t %>"><%= "#{t} (#{Todo.undone_tagged_with(t).count})" %></a>
 	</li>
 	<% end %>
 </ul>

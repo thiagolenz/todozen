@@ -1,8 +1,8 @@
-<div class="input-append">
-	<%= form_for @todo, :remote => true do |f| %>
-		<%= f.text_field :desc, :autofocus => true, :class => :span12, :placeholder => 'Type a todo and press ENTER...', :id => 'todo' %>
-		<button type="submit" class="btn">
-		  <i class="icon-plus"></i>
-		</button>
-	<% end %>
+<%= form_for @todo, :remote => true, :html => {:class => 'todo-form'} do |f| %>
+<div class="m-input-append">
+	<%= f.text_field :desc, :autofocus => true, :class => 'm-wrap span11', :placeholder => 'Type a new TODO and press ENTER...', :id => 'todo' %>
+	<button type="submit" class="m-btn green">
+		<i class="icon-plus icon-white"></i>
+	</button>
 </div>
+<% end %>
