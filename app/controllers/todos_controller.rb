@@ -1,8 +1,9 @@
 class TodosController < ApplicationController
   respond_to :html, :json
   before_filter :new_todo, :except => [:create]
+
   def index
-    @todos = Todo.all
+    @todos = Todo.undone_tasks
     respond_with @todos
   end
 
@@ -16,7 +17,7 @@ class TodosController < ApplicationController
   end
 
   def tag
-    @todos = Todo.last(params[:tag])
+    @todos = Todo.undone_tagged_with(params[:tag])
     render :action => 'index'
   end
 

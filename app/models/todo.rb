@@ -6,8 +6,11 @@ class Todo
   field :desc, type: String
   field :done, type: Boolean, default: false
 
-  scope :last, ->(tag){ where(:done => false, :desc => /##{Regexp.escape(tag)}/).limit(20) }
-  scope :last_done, ->(tag){ where(:done => true, :desc => /##{Regexp.escape(tag)}/).limit(10) }
+  scope :undone_tasks, where(:done => false)
+  scope :done_tasks, where(:done => true)
+  scope :by_tag, ->(tag){ where(:desc => /##{Regexp.escape(tag)}/) }
+  scope :undone_tagged_with, ->(tag){ undone_tasks.by_tag tag }
+  scope :done_tagged_with, ->(tag){ done_tasks.by_tag tag }
 
   validates :desc, presence: true
 end

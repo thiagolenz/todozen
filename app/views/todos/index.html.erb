@@ -2,6 +2,6 @@
 
 <% @todos.each do |t| %>
 	<ul class="unstyled">
-		<li><input type='checkbox' /><%= t.desc %></li>
+		<li><input type='checkbox' /><%= todo_desc(t.desc).html_safe unless t.desc.nil? %></li>
 	</ul>
 <% end %>
