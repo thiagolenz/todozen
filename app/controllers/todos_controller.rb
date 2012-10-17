@@ -13,12 +13,10 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(params[:todo], done: false)
-    @todo.save
-    redirect_to :action => "index"
+    redirect_to :action => "index" if @todo.save
   end
 
   def tag
-    @tag = params[:tags].split('/')
     @todos = Todo.undone_tasks
     @tag.each do |t|
       @todos = @todos.undone_tagged_with t
@@ -32,13 +30,13 @@ class TodosController < ApplicationController
       @todo.done = true
       @todo.save
     end
-    redirect_to :action => "index"
-    # session[:return_to] = request.referer
+    redirect_to :back
   end
 
   private
   def prepare_todo
-    @todo = Todo.new(done: false)
+    @tag = params[:tags].split('/') if not params[:tags].nil?
+    @todo = Todo.new(done: false, desc: @tag.nil? ? "" : "##{@tag.join(' #')} ")
     @tags = []
     Todo.undone_tasks.each do |t|
       t.desc.scan(/(?:^|\s)#(\w+)/i).transpose.each do |tag|

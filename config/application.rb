@@ -63,7 +63,7 @@ module Todozen
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     Mongoid.load!("config/mongoid.yml")
-    Mongoid.logger.level = Logger::DEBUG
-    Moped.logger.level = Logger::DEBUG
+    Mongoid.logger.level = Logger::INFO
+    Moped.logger.level = Logger::INFO
   end
 end
