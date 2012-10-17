@@ -18,8 +18,11 @@ class TodosController < ApplicationController
   end
 
   def tag
-    @tag = params[:tag]
-    @todos = Todo.undone_tagged_with @tag
+    @tag = params[:tags].split('/')
+    @todos = Todo.undone_tasks
+    @tag.each do |t|
+      @todos = @todos.undone_tagged_with t
+    end
     render :action => 'index'
   end
 

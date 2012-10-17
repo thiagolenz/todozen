@@ -4,7 +4,7 @@
 		<% if @tag.nil? %>
 		All my todos
 		<% else %>
-		<%= "Todos tagged with ##{@tag}" %>
+		<%= "Todos tagged with ##{@tag.join(' and #')}" %>
 		<% end %>
 	</h3>
 </legend>

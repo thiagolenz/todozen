@@ -21,20 +21,17 @@ ul.tags {
 		span {
 			.transition(all 0.2s ease-in-out);
 		}
-		a:hover {
-			text-decoration: none;
-			span {
-				background-color: lighten(#3A87AD, 20%)
-			}
-		}
 	}
 }
 
 ul.todos {
 	li {
 		font-size: 25px;
-		a {
+		label a {
 			.transition(all 0.2s ease-in-out);
+			&.m-btn.mini {
+				margin-left: 0;
+			}
 		}
 	}
 }

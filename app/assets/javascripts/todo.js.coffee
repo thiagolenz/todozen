@@ -3,7 +3,7 @@ init_forms = ->
 		Turbolinks.visit(document.location.href)
 
 	$('input[type=checkbox]').on 'click', ->
-		Turbolinks.visit('/todos/' + $(this).attr('id') + '/done')
+		Turbolinks.visit('/done/' + $(this).attr('id'))
 
 $ -> init_forms()
 $(document).on 'page:load', init_forms
